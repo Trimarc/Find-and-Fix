@@ -46,6 +46,7 @@ $ADAWithSPN | ForEach-Object {
     $ada = $_
     $ada | Select-Object -ExpandProperty ServicePrincipalName | ForEach-Object {
         $spn = $_
-        $ada | Add-Member -NotePropertyName "Remove SPN '$spn'" -NotePropertyValue "setspn -x $spn $($ada.Name)" -Force
+        $ada | Add-Member -NotePropertyName "Remove SPN '$spn'" -NotePropertyValue "setspn -D $spn $($ada.Name)" -Force
     }
     $ada | Select-Object Name, DistinguishedName, ServicePrincipalName, 'Remove *' | Format-List
+}
