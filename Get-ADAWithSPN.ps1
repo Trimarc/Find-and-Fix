@@ -18,7 +18,7 @@ $ADAWithSPN += @($EASid, $SASid) | ForEach-Object {
         $dn = $_
         # Get AD objects with the specified distinguished name and check for SPNs
         Get-ADObject $dn -Properties ServicePrincipalName | Where-Object ServicePrincipalName
-    } # | Where-Object ObjectClass -eq 'user' # Ensure only user objects are included
+    } | Where-Object ObjectClass -eq 'user' # Ensure only user objects are included
 }
 
 # Retrieve members of built-in Administrators (BA) and Domain Admins (DA) groups who have SPNs
@@ -34,7 +34,7 @@ $ADAWithSPN += @($EASid, $SASid) | ForEach-Object {
             $dn = $_
             # Get AD objects with the specified distinguished name and check for SPNs
             Get-ADObject $dn -Properties ServicePrincipalName | Where-Object ServicePrincipalName
-        } # | Where-Object ObjectClass -eq 'user' # Ensure only user objects are included
+        } | Where-Object ObjectClass -eq 'user' # Ensure only user objects are included
     }
 }
 
